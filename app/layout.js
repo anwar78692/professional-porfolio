@@ -7,6 +7,7 @@ import Loader from './components/Loader';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { LoadingProvider, useLoading } from './LoadingContext';
+import StyledComponentsRegistry from '@/lib/register';
 
 function ContentLayout({ children }) {
   const router = useRouter();
@@ -38,6 +39,7 @@ function ContentLayout({ children }) {
 }
 
 export default function RootLayout({ children }) {
+
   return (
     <html lang="en">
       <Head>
@@ -46,10 +48,14 @@ export default function RootLayout({ children }) {
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&display=swap" rel="stylesheet" />
       </Head>
       <body>
+        <StyledComponentsRegistry>
         <LoadingProvider>
           <ContentLayout>{children}</ContentLayout>
         </LoadingProvider>
+        </StyledComponentsRegistry>
       </body>
     </html>
   );
 }
+
+

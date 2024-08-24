@@ -1,7 +1,9 @@
 'use client';
+
 import Link from 'next/link';
-import Button from './Button';
+import { usePathname } from 'next/navigation';
 import styled from 'styled-components';
+import Button from './Button';
 
 const StickyHeader = styled.header`
   position: sticky;
@@ -38,13 +40,21 @@ const NameText = styled.span`
 
 const Nav = styled.nav`
   display: flex;
-  gap: 42px;
+  gap: 25px;
   font-weight: 600;
   font-size: 16px;
   align-items: center;
 `;
 
+const NavLink = styled.li`
+  color: ${({ isActive }) => (isActive ? '#A53DFF' : 'black')};
+  text-decoration: ${({ isActive }) => (isActive ? 'none' : 'none')};
+  list-style: none;
+`;
+
 export default function Header() {
+  const pathname = usePathname();
+
   return (
     <StickyHeader>
       <div className='flex items-center gap-4'>
@@ -52,12 +62,14 @@ export default function Header() {
         <NameText>Anwar Ahmad</NameText>
       </div>
       <Nav>
-        <Link href="/">Home</Link>
-        <Link href="/about">About</Link>
-        <Link href="/portfolio">Portfolio</Link>
-        <Link href="/blog">Blog</Link>
-        <Link href="/services">Services</Link>
-        <Link href="/contacts">
+        {['/', '/about', '/portfolio', '/blog', '/services', '/contacts'].map((path, index) => (
+          <Link href={path} key={index} passHref>
+            <NavLink isActive={pathname === path}>
+              {path === '/' ? 'Home' : path.slice(1).charAt(0).toUpperCase() + path.slice(2)}
+            </NavLink>
+          </Link>
+        ))}
+        <Link href="/contacts" passHref>
           <Button padding="12px 24px" fontWeight="600">
             Contact
           </Button>
