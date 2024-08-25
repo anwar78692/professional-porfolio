@@ -3,15 +3,15 @@
 import dynamic from 'next/dynamic';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import powertrader from '../../public/powertrader.png';
-import desihisab from '../../public/desihisab.png';
-import humandesign from '../../public/humandesign.png';
-import innocap1 from '../../public/innocap1.png';
-import tulkka from '../../public/tulkka.png';
 import rake from '../../public/rake.png';
 import Button from '../components/Button';
-
+import tulkka from '../../public/tulkka.png';
+import innocap1 from '../../public/innocap1.png';
+import desihisab from '../../public/desihisab.png';
+import powertrader from '../../public/powertrader.png';
+import humandesign from '../../public/humandesign.png';
 const ProjectCard = dynamic(() => import('../components/ProjectCard'), { ssr: false });
+
 
 const Section = styled.section`
   display: flex;

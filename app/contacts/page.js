@@ -153,7 +153,7 @@ const ContactPage = () => {
         >
           <h3>Let's discuss your Project</h3>
           <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.</p>
-          
+
           <div className="info-box">
             <svg>/* Address Icon SVG */</svg>
             <span>New Mexico 31134</span>
