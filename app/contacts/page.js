@@ -228,7 +228,6 @@ const formVariants = {
 };
 
 const ContactPage = () => {
-
   const handleSubmit = async (event) => {
     event.preventDefault();
   
@@ -252,6 +251,7 @@ const ContactPage = () => {
   
       if (response.ok) {
         alert('Your message has been sent!');
+        event.target.reset(); // Clear all fields after successful submission
       } else {
         alert('There was an error sending your message.');
       }
@@ -260,10 +260,10 @@ const ContactPage = () => {
       alert('There was an error sending your message.');
     }
   };
+
   return (
     <ContactSection>
       <ContactContainer>
-      
         <ContactForm
           initial="hidden"
           animate="visible"
@@ -272,22 +272,22 @@ const ContactPage = () => {
           onSubmit={handleSubmit}
         >
           <label>Name*</label>
-          <input type="text" placeholder="Your Name" required />
+          <input type="text" name="name" placeholder="Your Name" required />
 
           <label>Email*</label>
-          <input type="email" placeholder="Your Email" required />
+          <input type="email" name="email" placeholder="Your Email" required />
 
           <label>Location</label>
-          <input type="text" placeholder="Your Location" />
+          <input type="text" name="location" placeholder="Your Location" />
 
           <label>Budget*</label>
-          <input type="text" placeholder="Your Budget" required />
+          <input type="text" name="budget" placeholder="Your Budget" required />
 
           <label>Subject*</label>
-          <input type="text" placeholder="Subject" required />
+          <input type="text" name="subject" placeholder="Subject" required />
 
           <label>Message*</label>
-          <textarea rows="4" placeholder="Your Message" required />
+          <textarea name="message" rows="4" placeholder="Your Message" required />
 
           <Button type="submit">
             Submit

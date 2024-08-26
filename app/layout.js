@@ -5,12 +5,12 @@ import { useEffect } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Loader from './components/Loader';
-import { useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import StyledComponentsRegistry from '@/lib/register';
 import { LoadingProvider, useLoading } from './LoadingContext';
 
 function ContentLayout({ children }) {
-  const router = useRouter();
+  const pathname = usePathname();
   const { loading, startLoading, stopLoading } = useLoading();
 
   useEffect(() => {
@@ -20,10 +20,11 @@ function ContentLayout({ children }) {
       stopLoading();
     };
 
-    handleComplete();
+    handleComplete(); // This should be called after the route change completes
     return () => {
+      // Cleanup if necessary
     };
-  }, [router.pathname]);
+  }, [pathname]); // Use pathname to detect route changes
 
   return (
     <>
@@ -36,7 +37,6 @@ function ContentLayout({ children }) {
 }
 
 export default function RootLayout({ children }) {
-
   return (
     <html lang="en">
       <Head>
@@ -49,13 +49,11 @@ export default function RootLayout({ children }) {
       </Head>
       <body>
         <StyledComponentsRegistry>
-        <LoadingProvider>
-          <ContentLayout>{children}</ContentLayout>
-        </LoadingProvider>
+          <LoadingProvider>
+            <ContentLayout>{children}</ContentLayout>
+          </LoadingProvider>
         </StyledComponentsRegistry>
       </body>
     </html>
   );
 }
-
-

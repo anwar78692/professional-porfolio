@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 
 const Section = styled.section`
   background-color: #172A45; // Dark blue background color
@@ -68,6 +69,12 @@ const Button = styled(motion.button)`
 `;
 
 const ProjectIdea = () => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push('/contacts');
+  }
+
   return (
     <Section>
       <Title>Do you have a Project Idea? Let's discuss your project!</Title>
@@ -78,6 +85,7 @@ const ProjectIdea = () => {
       <Button
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
+        onClick={handleClick}
       >
         Let’s work Together →
       </Button>

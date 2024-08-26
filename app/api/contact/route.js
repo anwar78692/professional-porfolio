@@ -13,10 +13,11 @@ export async function POST(req) {
   });
 
   const mailOptions = {
-    from: email,
+    from: process.env.NEXT_PUBLIC_EMAIL_USER,
     to: process.env.NEXT_PUBLIC_EMAIL_TO,
     subject: `New Contact Form Submission: ${subject}`,
     text: `Name: ${name}\nEmail: ${email}\nLocation: ${location}\nBudget: ${budget}\n\nMessage:\n${message}`,
+    replyTo: email,
   };
 
   try {
