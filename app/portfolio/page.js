@@ -12,13 +12,24 @@ import powertrader from '../../public/powertrader.png';
 import humandesign from '../../public/humandesign.png';
 const ProjectCard = dynamic(() => import('../components/ProjectCard'), { ssr: false });
 
-
 const Section = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 24px 300px;
   background: linear-gradient(-0.35deg, #fff, #e6e8eb);
+
+  @media (max-width: 1200px) {
+    padding: 24px 100px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 24px 50px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 24px 20px;
+  }
 `;
 
 const GridContainer = styled.div`
@@ -29,6 +40,14 @@ const GridContainer = styled.div`
   width: 100%;
   max-width: 1200px;
   margin-bottom: 30px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const PortfolioStyle = styled(motion.h1)`
@@ -38,6 +57,16 @@ const PortfolioStyle = styled(motion.h1)`
   font-size: 48px;
   font-weight: 600;
   line-height: 56px;
+
+  @media (max-width: 768px) {
+    font-size: 36px;
+    line-height: 44px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 28px;
+    line-height: 36px;
+  }
 `;
 
 const SpanText = styled(motion.p)`
@@ -49,6 +78,15 @@ const SpanText = styled(motion.p)`
   line-height: 24px;
   margin-top: 10px;
   width: 50%;
+
+  @media (max-width: 768px) {
+    width: 70%;
+  }
+
+  @media (max-width: 480px) {
+    width: 90%;
+    font-size: 16px;
+  }
 `;
 
 export default function ProjectsPage() {

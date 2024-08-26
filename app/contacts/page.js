@@ -11,6 +11,14 @@ const ContactSection = styled.section`
   padding: 4rem 2rem;
   background-color: #f8f9fb;
   min-height: 100vh;
+
+  @media (max-width: 768px) {
+    padding: 3rem 1rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 2rem 0.5rem;
+  }
 `;
 
 const ContactContainer = styled.div`
@@ -23,17 +31,33 @@ const ContactContainer = styled.div`
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   max-width: 1200px;
   width: 100%;
+
+  @media (max-width: 992px) {
+    flex-direction: column;
+    padding: 1.5rem;
+  }
 `;
 
 const ContactInfo = styled(motion.div)`
   flex: 1;
   margin-right: 2rem;
-  
+
+
   h3 {
     font-size: 2rem;
     font-weight: 600;
     color: #121e37;
     margin-bottom: 1rem;
+
+    @media (max-width: 768px) {
+      font-size: 1.75rem;
+      display:none;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 1.5rem;
+      display:none;
+    }
   }
 
   p {
@@ -41,6 +65,14 @@ const ContactInfo = styled(motion.div)`
     color: #6b7280;
     font-size: 1rem;
     line-height: 1.5;
+
+    @media (max-width: 768px) {
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 0.9rem;
+    }
   }
 
   .info-box {
@@ -56,12 +88,25 @@ const ContactInfo = styled(motion.div)`
       font-size: 1.5rem;
       color: #6a0dad;
       margin-right: 1rem;
+
+      @media (max-width: 480px) {
+        font-size: 1.25rem;
+      }
     }
 
     span {
       font-size: 1rem;
       color: #121e37;
+
+      @media (max-width: 480px) {
+        font-size: 0.9rem;
+      }
     }
+  }
+
+  @media (max-width: 992px) {
+    margin-right: 0;
+    margin-bottom: 2rem;
   }
 `;
 
@@ -69,10 +114,23 @@ const ContactForm = styled(motion.form)`
   flex: 1;
   display: flex;
   flex-direction: column;
+ width: 100%;
+
   label {
     margin-bottom: 0.5rem;
     font-weight: 600;
     color: #6b7280;
+
+    @media (max-width: 768px) {
+      font-size: 0.95rem;
+      width: 100%;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 0.9rem;
+      width: 100%;
+
+    }
   }
 
   input,
@@ -83,6 +141,16 @@ const ContactForm = styled(motion.form)`
     border-radius: 8px;
     font-size: 1rem;
     font-family: "Work Sans", sans-serif;
+
+    @media (max-width: 768px) {
+      font-size: 0.95rem;
+      padding: 0.7rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 0.9rem;
+      padding: 0.65rem;
+    }
   }
 
   input:focus,
@@ -111,6 +179,16 @@ const ContactForm = styled(motion.form)`
     svg {
       margin-left: 0.5rem;
     }
+
+    @media (max-width: 768px) {
+      padding: 0.7rem;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 480px) {
+      padding: 0.65rem;
+      font-size: 0.9rem;
+    }
   }
 `;
 
@@ -128,6 +206,14 @@ const SocialLinks = styled.div`
     &:hover {
       color: #7b1fac;
     }
+
+    @media (max-width: 768px) {
+      font-size: 1.3rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 1.1rem;
+    }
   }
 `;
 
@@ -142,44 +228,48 @@ const formVariants = {
 };
 
 const ContactPage = () => {
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+  
+    const formData = {
+      name: event.target.elements.name.value,
+      email: event.target.elements.email.value,
+      location: event.target.elements.location.value,
+      budget: event.target.elements.budget.value,
+      subject: event.target.elements.subject.value,
+      message: event.target.elements.message.value,
+    };
+  
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      if (response.ok) {
+        alert('Your message has been sent!');
+      } else {
+        alert('There was an error sending your message.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('There was an error sending your message.');
+    }
+  };
   return (
     <ContactSection>
       <ContactContainer>
-        <ContactInfo
-          initial="hidden"
-          animate="visible"
-          transition={{ duration: 0.5 }}
-          variants={contactVariants}
-        >
-          <h3>Let's discuss your Project</h3>
-          <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration.</p>
-
-          <div className="info-box">
-            <svg>/* Address Icon SVG */</svg>
-            <span>New Mexico 31134</span>
-          </div>
-          <div className="info-box">
-            <svg>/* Email Icon SVG */</svg>
-            <span>anwar15298@gmail.com</span>
-          </div>
-          <div className="info-box">
-            <svg>/* Phone Icon SVG */</svg>
-            <span>+91 9198782306</span>
-          </div>
-
-          <SocialLinks>
-            <a href="#facebook">Fb</a>
-            <a href="#behance">Bo</a>
-            <a href="#instagram">In</a>
-            <a href="#linkedin">Ln</a>
-          </SocialLinks>
-        </ContactInfo>
-
+      
         <ContactForm
           initial="hidden"
           animate="visible"
           transition={{ duration: 0.5 }}
           variants={formVariants}
+          onSubmit={handleSubmit}
         >
           <label>Name*</label>
           <input type="text" placeholder="Your Name" required />

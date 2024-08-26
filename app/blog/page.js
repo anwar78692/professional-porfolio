@@ -2,12 +2,23 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import reacthooks from "../../public/reacthooks.png";
 
 const Section = styled.section`
   padding: 60px 300px;
   background: linear-gradient(-0.35deg, #fff, #e6e8eb);
   min-height: 100vh;
+
+  @media (max-width: 1200px) {
+    padding: 60px 100px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 60px 50px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 60px 20px;
+  }
 `;
 
 const BlogTitle = styled(motion.h1)`
@@ -17,12 +28,25 @@ const BlogTitle = styled(motion.h1)`
   font-family: "Work Sans";
   font-weight: 600;
   margin-bottom: 40px;
+
+  @media (max-width: 768px) {
+    font-size: 36px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
 `;
 
 const BlogGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 30px;
+
+  @media (max-width: 480px) {
+    gap: 20px;
+  }
 `;
 
 const BlogCard = styled(motion.div)`
@@ -39,6 +63,10 @@ const CardImage = styled.img`
   width: 100%;
   height: 200px;
   object-fit: cover;
+
+  @media (max-width: 480px) {
+    height: 150px;
+  }
 `;
 
 const CardContent = styled.div`
@@ -47,6 +75,10 @@ const CardContent = styled.div`
   flex-direction: column;
   justify-content: space-between;
   flex-grow: 1;
+
+  @media (max-width: 480px) {
+    padding: 15px;
+  }
 `;
 
 const CardTitle = styled.h3`
@@ -55,6 +87,14 @@ const CardTitle = styled.h3`
   font-family: "Work Sans";
   font-weight: 600;
   margin-bottom: 10px;
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 18px;
+  }
 `;
 
 const CardDescription = styled.p`
@@ -63,6 +103,14 @@ const CardDescription = styled.p`
   font-family: "Work Sans";
   line-height: 1.5;
   flex-grow: 1;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 13px;
+  }
 `;
 
 const ReadMoreButton = styled(motion.button)`
@@ -76,8 +124,14 @@ const ReadMoreButton = styled(motion.button)`
   font-family: "Work Sans";
   cursor: pointer;
   align-self: flex-start;
+
   &:hover {
     background-color: #8c33d2;
+  }
+
+  @media (max-width: 480px) {
+    padding: 10px 20px;
+    font-size: 14px;
   }
 `;
 

@@ -10,6 +10,23 @@ const ServicesSection = styled.section`
   padding: 24px 300px;
   background-color: #f5f7fa;
   min-height: 100vh;
+
+  @media (max-width: 1200px) {
+    padding: 24px 150px;
+  }
+
+  @media (max-width: 992px) {
+    flex-direction: column;
+    padding: 24px 100px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 24px 50px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 24px 20px;
+  }
 `;
 
 const LeftContainer = styled.div`
@@ -19,11 +36,27 @@ const LeftContainer = styled.div`
   h1 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
+
+    @media (max-width: 768px) {
+      font-size: 2rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 1.75rem;
+    }
   }
 
   p {
     margin-bottom: 1.5rem;
     color: #555;
+
+    @media (max-width: 768px) {
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 0.85rem;
+    }
   }
 
   button {
@@ -39,6 +72,21 @@ const LeftContainer = styled.div`
     &:hover {
       background-color: #7b1fac;
     }
+
+    @media (max-width: 768px) {
+      padding: 0.7rem 1.3rem;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 480px) {
+      padding: 0.6rem 1.1rem;
+      font-size: 0.85rem;
+    }
+  }
+
+  @media (max-width: 992px) {
+    padding-right: 0;
+    text-align: center;
   }
 `;
 
@@ -47,6 +95,10 @@ const RightContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+
+  @media (max-width: 992px) {
+    margin-top: 2rem;
+  }
 `;
 
 const ServiceCard = styled(motion.div)`
@@ -60,10 +112,34 @@ const ServiceCard = styled(motion.div)`
   h3 {
     margin-bottom: 0.75rem;
     font-size: 1.25rem;
+
+    @media (max-width: 768px) {
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 1rem;
+    }
   }
 
   p {
     color: #555;
+
+    @media (max-width: 768px) {
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 0.85rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 1.2rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1rem;
   }
 `;
 

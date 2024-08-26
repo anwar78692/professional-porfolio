@@ -2,10 +2,9 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import Button from './Button';
 import { useState } from 'react';
-import { AiOutlineMenu } from "react-icons/ai";
 
 const StickyHeader = styled.header`
   position: sticky;
@@ -20,10 +19,7 @@ const StickyHeader = styled.header`
   width: 100%;
 
   @media (max-width: 768px) {
-    padding: 20px 300px;
-        display: flex;
-    justify-content: space-evenly;
-    gap: 35rem
+    padding: 10px 20px;
   }
 `;
 
@@ -45,10 +41,6 @@ const StyledName = styled.div`
 const NameText = styled.span`
   font-size: 24px;
   font-weight: 600;
-
-  @media (max-width: 768px) {
-    display: none;
-  }
 `;
 
 const Nav = styled.nav`
@@ -59,98 +51,117 @@ const Nav = styled.nav`
   align-items: center;
 
   @media (max-width: 768px) {
-    display: none;
+    position: fixed;
+    top: 0;
+    left: ${({ isOpen }) => (isOpen ? '0' : '-100%')};
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: left 0.3s ease-in-out;
+    z-index: 999;
   }
 `;
 
 const NavLink = styled.li`
   color: ${({ isActive }) => (isActive ? '#A53DFF' : 'black')};
-  text-decoration: ${({ isActive }) => (isActive ? 'none' : 'none')};
   list-style: none;
-`;
-
-const MenuIcon = styled.div`
-  display: none;
 
   @media (max-width: 768px) {
-    display: block;
+    color: ${({ isActive }) => (isActive ? '#A53DFF' : 'white')};
+    margin: 20px 0;
+    font-size: 24px;
     cursor: pointer;
   }
 `;
 
-const SideMenu = styled.div`
-  position: fixed;
-  top: 0;
-  right: 0;
-  height: 100%;
-  width: 250px;
-  background-color: white;
-  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  transform: ${({ isOpen }) => (isOpen ? 'translateX(0)' : 'translateX(100%)')};
-  transition: transform 0.3s ease-in-out;
-  z-index: 2000;
+const Hamburger = styled.div`
+  display: none;
+  cursor: pointer;
+
+  @media (max-width: 768px) {
+    display: block;
+  }
 `;
 
-const CloseButton = styled.button`
-  align-self: flex-end;
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  margin-bottom: 20px;
+const Bar = styled.div`
+  width: 25px;
+  height: 3px;
+  background-color: black;
+  margin: 5px;
+  transition: all 0.3s ease-in-out;
+
+  ${({ isOpen }) => isOpen && `
+    &:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    &:nth-child(2) {
+      opacity: 0;
+    }
+    &:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+  `}
+`;
+
+const shine = keyframes`
+  0% {
+    background-position: -200px;
+  }
+  100% {
+    background-position: 200px;
+  }
+`;
+
+const ShinyButton = styled(Button)`
+  background: linear-gradient(90deg, #A53DFF, #FFD700, #A53DFF);
+  background-size: 200%;
+  animation: ${shine} 2s linear infinite;
+
+  @media (max-width: 768px) {
+    font-size: 24px;
+  }
 `;
 
 export default function Header() {
   const pathname = usePathname();
-  const [isMenuOpen, setMenuOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const toggleMenu = () => setMenuOpen(!isMenuOpen);
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
 
   return (
-    <>
-      <StickyHeader>
-        <div className='flex items-center gap-4'>
-          <StyledName>A</StyledName>
-          <NameText>Anwar Ahmad</NameText>
-        </div>
-        <Nav>
-          {['/', '/about', '/portfolio', '/blog', '/services', '/contacts'].map((path, index) => (
-            <Link href={path} key={index} passHref>
-              <NavLink isActive={pathname === path}>
-                {path === '/' ? 'Home' : path.slice(1).charAt(0).toUpperCase() + path.slice(2)}
-              </NavLink>
-            </Link>
-          ))}
-          <Link href="/contacts" passHref>
-            <Button padding="12px 24px" fontWeight="600">
-              Contact
-            </Button>
-          </Link>
-        </Nav>
-        <MenuIcon onClick={toggleMenu}>
-         <AiOutlineMenu />
-        </MenuIcon>
-      </StickyHeader>
-
-      <SideMenu isOpen={isMenuOpen}>
-        <CloseButton onClick={toggleMenu}>&times;</CloseButton>
-        {['/', '/about', '/portfolio', '/blog', '/services', '/contacts'].map((path, index) => (
-          <Link href={path} key={index} passHref onClick={toggleMenu}>
-            <NavLink isActive={pathname === path}>
+    <StickyHeader>
+      <div className='flex items-center gap-4'>
+        <StyledName>A</StyledName>
+        <NameText>Anwar Ahmad</NameText>
+      </div>
+      <Hamburger onClick={toggleMenu}>
+        <Bar isOpen={isOpen} />
+        <Bar isOpen={isOpen} />
+        <Bar isOpen={isOpen} />
+      </Hamburger>
+      <Nav isOpen={isOpen}>
+        {['/', '/about', '/portfolio', '/blog', '/services'].map((path, index) => (
+          <Link href={path} key={index} passHref>
+            <NavLink isActive={pathname === path} onClick={closeMenu}>
               {path === '/' ? 'Home' : path.slice(1).charAt(0).toUpperCase() + path.slice(2)}
             </NavLink>
           </Link>
         ))}
-        <Link href="/contacts" passHref onClick={toggleMenu}>
-          <Button padding="12px 24px" fontWeight="600">
+        <Link href="/contacts" passHref>
+          <ShinyButton padding="12px 24px" fontWeight="600" onClick={closeMenu}>
             Contact
-          </Button>
+          </ShinyButton>
         </Link>
-      </SideMenu>
-    </>
+      </Nav>
+    </StickyHeader>
   );
 }
