@@ -31,7 +31,9 @@ function ContentLayout({ children }) {
     <>
       {loading && <Loader />}
       <Header />
-      <main>{children}</main>
+      <main>
+      <StarsBackground/>
+        {children}</main>
       <Footer />
     </>
   );
@@ -52,7 +54,7 @@ export default function RootLayout({ children }) {
   
         <StyledComponentsRegistry>
           <LoadingProvider>
-            <StarsBackground/>
+           
             <ContentLayout>{children}</ContentLayout>
           </LoadingProvider>
         </StyledComponentsRegistry>
