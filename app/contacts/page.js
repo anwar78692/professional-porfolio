@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import Button from '../components/Button';
 import StarsBackground from '../components/StarsBackground';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SectionStyle = styled.div`
   background: linear-gradient(135deg, #0d0d2b, #191970);
@@ -139,7 +141,6 @@ const ContactPage = () => {
       name: event.target.elements.name.value,
       email: event.target.elements.email.value,
       location: event.target.elements.location.value,
-      budget: event.target.elements.budget.value,
       subject: event.target.elements.subject.value,
       message: event.target.elements.message.value,
     };
@@ -154,19 +155,24 @@ const ContactPage = () => {
       });
 
       if (response.ok) {
-        alert('Your message has been sent!');
+        toast.success('Your message has been sent!', 'success');
         event.target.reset(); // Clear all fields after successful submission
       } else {
-        alert('There was an error sending your message.');
+        toast.error('There was an error sending your message.', 'error');
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('There was an error sending your message.');
+      toast.error('There was an error sending your message.', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 3000,
+      });
     }
   };
 
+
   return (
     <SectionStyle>
+       <ToastContainer />
       <StarsBackground />
       <ContactSection>
         <ContactContainer>
