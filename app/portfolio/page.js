@@ -10,14 +10,21 @@ import innocap1 from '../../public/innocap1.png';
 import desihisab from '../../public/desihisab.png';
 import powertrader from '../../public/powertrader.png';
 import humandesign from '../../public/humandesign.png';
+import StarsBackground from '../components/StarsBackground';
 const ProjectCard = dynamic(() => import('../components/ProjectCard'), { ssr: false });
+
+const SectionStyle = styled.div`
+  background: linear-gradient(135deg, #0d0d2b, #191970); /* Corrected background syntax */
+  position: relative; /* Ensures stars are positioned relative to this section */
+  // overflow: hidden;   /* Prevents overflow from star animations */
+`;
 
 const Section = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 24px 300px;
-  background: linear-gradient(-0.35deg, #fff, #e6e8eb);
+  // background: linear-gradient(-0.35deg, #fff, #e6e8eb);
 
   @media (max-width: 1200px) {
     padding: 24px 100px;
@@ -51,7 +58,7 @@ const GridContainer = styled.div`
 `;
 
 const PortfolioStyle = styled(motion.h1)`
-  color: var(--Gray-900, #132238);
+  color: #fff;
   text-align: center;
   font-family: "Work Sans";
   font-size: 48px;
@@ -104,6 +111,8 @@ export default function ProjectsPage() {
   ];
 
   return (
+    <SectionStyle>
+        <StarsBackground />
     <Section>
       <PortfolioStyle
         initial={{ opacity: 0, y: -50 }}
@@ -134,5 +143,6 @@ export default function ProjectsPage() {
       </GridContainer>
       <Button onClick={handleMore}>More Projects</Button>
     </Section>
+    </SectionStyle>
   );
 }

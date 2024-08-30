@@ -3,13 +3,19 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import Button from '../components/Button';
+import StarsBackground from '../components/StarsBackground';
+
+const SectionStyle = styled.div`
+  background: linear-gradient(135deg, #0d0d2b, #191970);
+  position: relative;
+  overflow: hidden; /* Ensures stars don't cause scrollbars */
+`;
 
 const ContactSection = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 4rem 2rem;
-  background-color: #f8f9fb;
   min-height: 100vh;
 
   @media (max-width: 768px) {
@@ -25,7 +31,8 @@ const ContactContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  background-color: #fff;
+  background: rgba(255, 255, 255, 0.85); /* Light transparent white background */
+  backdrop-filter: blur(10px); /* Blur effect for a frosted glass look */
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -38,83 +45,11 @@ const ContactContainer = styled.div`
   }
 `;
 
-const ContactInfo = styled(motion.div)`
-  flex: 1;
-  margin-right: 2rem;
-
-
-  h3 {
-    font-size: 2rem;
-    font-weight: 600;
-    color: #121e37;
-    margin-bottom: 1rem;
-
-    @media (max-width: 768px) {
-      font-size: 1.75rem;
-      display:none;
-    }
-
-    @media (max-width: 480px) {
-      font-size: 1.5rem;
-      display:none;
-    }
-  }
-
-  p {
-    margin-bottom: 1.5rem;
-    color: #6b7280;
-    font-size: 1rem;
-    line-height: 1.5;
-
-    @media (max-width: 768px) {
-      font-size: 0.95rem;
-    }
-
-    @media (max-width: 480px) {
-      font-size: 0.9rem;
-    }
-  }
-
-  .info-box {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1.5rem;
-    padding: 1rem;
-    background: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-
-    svg {
-      font-size: 1.5rem;
-      color: #6a0dad;
-      margin-right: 1rem;
-
-      @media (max-width: 480px) {
-        font-size: 1.25rem;
-      }
-    }
-
-    span {
-      font-size: 1rem;
-      color: #121e37;
-
-      @media (max-width: 480px) {
-        font-size: 0.9rem;
-      }
-    }
-  }
-
-  @media (max-width: 992px) {
-    margin-right: 0;
-    margin-bottom: 2rem;
-  }
-`;
-
 const ContactForm = styled(motion.form)`
   flex: 1;
   display: flex;
   flex-direction: column;
- width: 100%;
+  width: 100%;
 
   label {
     margin-bottom: 0.5rem;
@@ -129,7 +64,6 @@ const ContactForm = styled(motion.form)`
     @media (max-width: 480px) {
       font-size: 0.9rem;
       width: 100%;
-
     }
   }
 
@@ -140,7 +74,7 @@ const ContactForm = styled(motion.form)`
     border: 1px solid #ddd;
     border-radius: 8px;
     font-size: 1rem;
-    font-family: "Work Sans", sans-serif;
+    font-family: 'Work Sans', sans-serif;
 
     @media (max-width: 768px) {
       font-size: 0.95rem;
@@ -192,36 +126,6 @@ const ContactForm = styled(motion.form)`
   }
 `;
 
-const SocialLinks = styled.div`
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
-
-  a {
-    font-size: 1.5rem;
-    color: #6a0dad;
-    text-decoration: none;
-    transition: color 0.3s ease;
-
-    &:hover {
-      color: #7b1fac;
-    }
-
-    @media (max-width: 768px) {
-      font-size: 1.3rem;
-    }
-
-    @media (max-width: 480px) {
-      font-size: 1.1rem;
-    }
-  }
-`;
-
-const contactVariants = {
-  hidden: { opacity: 0, x: -50 },
-  visible: { opacity: 1, x: 0 },
-};
-
 const formVariants = {
   hidden: { opacity: 0, x: 50 },
   visible: { opacity: 1, x: 0 },
@@ -230,7 +134,7 @@ const formVariants = {
 const ContactPage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     const formData = {
       name: event.target.elements.name.value,
       email: event.target.elements.email.value,
@@ -239,7 +143,7 @@ const ContactPage = () => {
       subject: event.target.elements.subject.value,
       message: event.target.elements.message.value,
     };
-  
+
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
@@ -248,7 +152,7 @@ const ContactPage = () => {
         },
         body: JSON.stringify(formData),
       });
-  
+
       if (response.ok) {
         alert('Your message has been sent!');
         event.target.reset(); // Clear all fields after successful submission
@@ -262,39 +166,39 @@ const ContactPage = () => {
   };
 
   return (
-    <ContactSection>
-      <ContactContainer>
-        <ContactForm
-          initial="hidden"
-          animate="visible"
-          transition={{ duration: 0.5 }}
-          variants={formVariants}
-          onSubmit={handleSubmit}
-        >
-          <label>Name*</label>
-          <input type="text" name="name" placeholder="Your Name" required />
+    <SectionStyle>
+      <StarsBackground />
+      <ContactSection>
+        <ContactContainer>
+          <ContactForm
+            initial="hidden"
+            animate="visible"
+            transition={{ duration: 0.5 }}
+            variants={formVariants}
+            onSubmit={handleSubmit}
+          >
+            <label>Name*</label>
+            <input type="text" name="name" placeholder="Your Name" required />
 
-          <label>Email*</label>
-          <input type="email" name="email" placeholder="Your Email" required />
+            <label>Email*</label>
+            <input type="email" name="email" placeholder="Your Email" required />
 
-          <label>Location</label>
-          <input type="text" name="location" placeholder="Your Location" />
+            <label>Location</label>
+            <input type="text" name="location" placeholder="Your Location" />
 
-          {/* <label>Budget*</label>
-          <input type="text" name="budget" placeholder="Your Budget" required /> */}
+            <label>Subject*</label>
+            <input type="text" name="subject" placeholder="Subject" required />
 
-          <label>Subject*</label>
-          <input type="text" name="subject" placeholder="Subject" required />
+            <label>Message*</label>
+            <textarea name="message" rows="4" placeholder="Your Message" required />
 
-          <label>Message*</label>
-          <textarea name="message" rows="4" placeholder="Your Message" required />
-
-          <Button type="submit">
-            Submit
-          </Button>
-        </ContactForm>
-      </ContactContainer>
-    </ContactSection>
+            <Button type="submit">
+              Submit
+            </Button>
+          </ContactForm>
+        </ContactContainer>
+      </ContactSection>
+    </SectionStyle>
   );
 };
 

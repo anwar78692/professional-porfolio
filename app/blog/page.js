@@ -2,10 +2,19 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import StarsBackground from '../components/StarsBackground';
+
+
+const SectionStyle = styled.div`
+  background: linear-gradient(135deg, #0d0d2b, #191970); /* Corrected background syntax */
+  position: relative; /* Ensures stars are positioned relative to this section */
+  overflow: hidden;   /* Prevents overflow from star animations */
+`;
+
 
 const Section = styled.section`
   padding: 60px 300px;
-  background: linear-gradient(-0.35deg, #fff, #e6e8eb);
+  // background: linear-gradient(-0.35deg, #fff, #e6e8eb);
   min-height: 100vh;
 
   @media (max-width: 1200px) {
@@ -23,7 +32,7 @@ const Section = styled.section`
 
 const BlogTitle = styled(motion.h1)`
   font-size: 48px;
-  color: #132238;
+  color: #fff;
   text-align: center;
   font-family: "Work Sans";
   font-weight: 600;
@@ -170,7 +179,10 @@ const BlogPage = () => {
   }
 
   return (
+    <SectionStyle>
+      <StarsBackground/>
     <Section>
+
       <BlogTitle
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -202,6 +214,7 @@ const BlogPage = () => {
         ))}
       </BlogGrid>
     </Section>
+    </SectionStyle>
   );
 };
 

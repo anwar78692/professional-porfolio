@@ -1,13 +1,20 @@
 'use client';
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import StarsBackground from "../components/StarsBackground";
 
+const SectionStyle = styled.div`
+  background: linear-gradient(135deg, #0d0d2b, #191970);
+  position: relative;
+  overflow: hidden; /* Ensures stars don't cause scrollbars */
+`;
 const Section = styled.section`
   display: flex;
   justify-content: center;
   padding: 24px 20px;
   width: 100%;
-  background: linear-gradient(-0.35deg, #fff, #e6e8eb);
+  height:100vh;
+  // background: linear-gradient(-0.35deg, #fff, #e6e8eb);
 
   @media (max-width: 768px) {
     padding: 16px 10px;
@@ -25,7 +32,7 @@ const LeftContainer = styled(motion.div)`
 `;
 
 const StyledHeading = styled(motion.h1)`
-  color: var(--Gray-900, #132238);
+  color:white;
   font-family: "Work Sans";
   font-size: 50px;
   font-style: normal;
@@ -42,7 +49,7 @@ const StyledHeading = styled(motion.h1)`
 `;
 
 const StyledParagraph = styled(motion.p)`
-  color: var(--Gray-700, #5a7184);
+  color: white;
   font-family: "Work Sans";
   font-size: 18px;
   line-height: 1.5;
@@ -65,7 +72,7 @@ const List = styled.ul`
   margin-top: 20px;
   padding-left: 20px;
   list-style-type: disc;
-
+color: white;
   @media (max-width: 768px) {
     padding-left: 15px;
   }
@@ -89,7 +96,10 @@ const List = styled.ul`
 
 export default function AboutPage() {
   return (
+    <SectionStyle>
+      <StarsBackground/>
     <Section>
+    
       <LeftContainer
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
@@ -117,5 +127,6 @@ export default function AboutPage() {
         </List>
       </LeftContainer>
     </Section>
+    </SectionStyle>
   );
 }

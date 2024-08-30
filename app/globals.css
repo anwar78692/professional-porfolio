@@ -20,30 +20,28 @@ body {
   padding: 0;
   font-family: "Montserrat", sans-serif;
   overflow-x: hidden; /* Prevent horizontal scroll */
-  position: relative;
+  /* position: relative; */
   color: var(--text-color);
 }
 
 /* Star styles */
-.stars {
-  width: 6px; /* Larger star size */
-  height: 6px;
-  background: white;
+.raindrop {
+  width: 2px;
+  height: 15px;
+  background: #b3cde0; /* Light blue color for raindrops */
   position: absolute;
-  border-radius: 50%;
-  animation: moveStars 10s linear infinite;
-  opacity: 0.9; /* Slightly higher opacity for better visibility */
-  will-change: transform; /* Optimize for better performance */
+  top: -10px; /* Start just above the viewport */
+  border-radius: 2px;
+  opacity: 0.8; /* Slight transparency for realistic effect */
+  animation: fall linear infinite;
 }
 
-@keyframes moveStars {
-  from {
-    transform: translate(0, 0); /* Start position */
-  }
+@keyframes fall {
   to {
-    transform: translate(100vw, 100vh); /* Restrict to viewport dimensions */
+    transform: translateY(100vh); /* Fall to the bottom of the viewport */
   }
 }
+
 
 :root {
   --background-color: #fff;
