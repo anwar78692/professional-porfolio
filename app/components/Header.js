@@ -96,6 +96,7 @@ const NavLink = styled.li`
 const Hamburger = styled.div`
   display: none;
   cursor: pointer;
+  z-index: 1001; 
 
   @media (max-width: 768px) {
     display: block;
