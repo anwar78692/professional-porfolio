@@ -280,8 +280,8 @@ const ContactPage = () => {
           <label>Location</label>
           <input type="text" name="location" placeholder="Your Location" />
 
-          <label>Budget*</label>
-          <input type="text" name="budget" placeholder="Your Budget" required />
+          {/* <label>Budget*</label>
+          <input type="text" name="budget" placeholder="Your Budget" required /> */}
 
           <label>Subject*</label>
           <input type="text" name="subject" placeholder="Subject" required />

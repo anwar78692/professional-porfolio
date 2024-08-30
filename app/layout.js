@@ -8,6 +8,7 @@ import Loader from './components/Loader';
 import { usePathname } from 'next/navigation';
 import StyledComponentsRegistry from '@/lib/register';
 import { LoadingProvider, useLoading } from './LoadingContext';
+import StarsBackground from './components/StarsBackground';
 
 function ContentLayout({ children }) {
   const pathname = usePathname();
@@ -48,8 +49,10 @@ export default function RootLayout({ children }) {
         <title>Anwar Ahmad's Portfolio</title>
       </Head>
       <body>
+  
         <StyledComponentsRegistry>
           <LoadingProvider>
+            <StarsBackground/>
             <ContentLayout>{children}</ContentLayout>
           </LoadingProvider>
         </StyledComponentsRegistry>

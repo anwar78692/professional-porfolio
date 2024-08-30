@@ -159,6 +159,16 @@ const blogPosts = [
 ];
 
 const BlogPage = () => {
+
+  const handleClick = (title) => {
+    if (title === 'Understanding React Hooks') {
+      window.open("https://medium.com/@premimm7/understanding-react-hooks-a-comprehensive-guide-65f23574d4ca", "_blank");
+    }
+    else if (title === 'Mastering CSS Grid') {
+      window.open("https://medium.com/@premimm7/mastering-css-grid-a-modern-approach-to-web-layouts-9cca1b681121", "_blank");
+    }
+  }
+
   return (
     <Section>
       <BlogTitle
@@ -183,6 +193,7 @@ const BlogPage = () => {
               <ReadMoreButton
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={()=>handleClick(post.title)}
               >
                 Read More
               </ReadMoreButton>

@@ -2,6 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 
 const ServicesSection = styled.section`
   display: flex;
@@ -149,6 +150,10 @@ const cardVariants = {
 };
 
 const Services = () => {
+  const router = useRouter();
+  const handleContact = () => {
+    router.push('/contacts');
+  }
   return (
     <ServicesSection>
       <LeftContainer>
@@ -177,6 +182,7 @@ const Services = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.6 }}
+          onClick={handleContact}
         >
           Say Hello!
         </motion.button>

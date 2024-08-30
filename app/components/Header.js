@@ -6,11 +6,26 @@ import styled, { keyframes } from 'styled-components';
 import Button from './Button';
 import { useState } from 'react';
 
+// Keyframes for the moving gradient background
+const gradientAnimation = keyframes`
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+`;
+
 const StickyHeader = styled.header`
   position: sticky;
   top: 0;
   z-index: 1000;
-  background-color: white;
+  background: linear-gradient(135deg, #ffafbd, #ffc3a0, #2193b0, #6dd5ed); /* Gradient colors */
+  background-size: 300% 300%; /* Larger background size to animate */
+  animation: ${gradientAnimation} 10s ease infinite; /* Animation for moving gradient */
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   padding: 20px 300px;
   display: flex;
@@ -41,6 +56,7 @@ const StyledName = styled.div`
 const NameText = styled.span`
   font-size: 24px;
   font-weight: 600;
+  color: #FFFFFF; /* Ensures name text stands out on the animated background */
 `;
 
 const Nav = styled.nav`
@@ -66,11 +82,11 @@ const Nav = styled.nav`
 `;
 
 const NavLink = styled.li`
-  color: ${({ isActive }) => (isActive ? '#A53DFF' : 'black')};
+  color: ${({ isActive }) => (isActive ? '#FFD700' : 'white')}; /* Active link is gold for visibility */
   list-style: none;
 
   @media (max-width: 768px) {
-    color: ${({ isActive }) => (isActive ? '#A53DFF' : 'white')};
+    color: ${({ isActive }) => (isActive ? '#FFD700' : 'white')};
     margin: 20px 0;
     font-size: 24px;
     cursor: pointer;
@@ -89,7 +105,7 @@ const Hamburger = styled.div`
 const Bar = styled.div`
   width: 25px;
   height: 3px;
-  background-color: black;
+  background-color: white;
   margin: 5px;
   transition: all 0.3s ease-in-out;
 
@@ -119,6 +135,7 @@ const ShinyButton = styled(Button)`
   background: linear-gradient(90deg, #A53DFF, #FFD700, #A53DFF);
   background-size: 200%;
   animation: ${shine} 2s linear infinite;
+  color: white;
 
   @media (max-width: 768px) {
     font-size: 24px;
