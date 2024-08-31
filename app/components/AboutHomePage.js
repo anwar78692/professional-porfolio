@@ -6,6 +6,8 @@ import Image from "next/image";
 import Button from "./Button";
 import { useRouter } from "next/navigation";
 import StarsBackground from "./StarsBackground";
+import ParticlesBackground from "./ParticlesBackground";
+import ThreeBackground from "./ThreeBackground";
 
 const SectionStyle = styled.div`
   background: linear-gradient(135deg, #0d0d2b, #191970); /* Corrected background syntax */
@@ -90,6 +92,8 @@ export default function AboutHomePage() {
   return (
     <SectionStyle>
     <StarsBackground />
+    <ParticlesBackground/>
+    {/* <ThreeBackground/> */}
     <Section>
       <LeftContainer
         initial={{ opacity: 0, x: -50 }}

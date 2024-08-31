@@ -8,7 +8,10 @@ import Loader from './components/Loader';
 import { usePathname } from 'next/navigation';
 import StyledComponentsRegistry from '@/lib/register';
 import { LoadingProvider, useLoading } from './LoadingContext';
+import 'particles.js';
 import StarsBackground from './components/StarsBackground';
+import ParticlesBackground from './components/ParticlesBackground';
+import ThreeBackground from './components/ThreeBackground';
 
 function ContentLayout({ children }) {
   const pathname = usePathname();
@@ -33,6 +36,7 @@ function ContentLayout({ children }) {
       <Header />
       <main>
       <StarsBackground/>
+      {/* <ThreeBackground/> */}
         {children}</main>
       <Footer />
     </>
