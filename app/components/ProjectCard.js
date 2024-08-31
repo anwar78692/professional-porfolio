@@ -95,7 +95,10 @@ export default function ProjectCard({ project }) {
       "Innocap": "https://innocap.net/norofen/r001",
       "Tulkka": "https://tulkka.com/",
     };
-    window.open(projectLinks[project.title] || "https://rake.com/", "_blank");
+    if(typeof window === 'undefined' ) {
+      window.open(projectLinks[project.title] || "https://rake.com/", "_blank");
+
+    }
   };
 
   return (

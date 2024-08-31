@@ -171,7 +171,9 @@ const BlogPage = () => {
 
   const handleClick = (title) => {
     if (title === 'Understanding React Hooks') {
-      window.open("https://medium.com/@premimm7/understanding-react-hooks-a-comprehensive-guide-65f23574d4ca", "_blank");
+      if(typeof window!== "undefined"){
+        window.open("https://medium.com/@premimm7/understanding-react-hooks-a-comprehensive-guide-65f23574d4ca", "_blank");
+      }
     }
     else if (title === 'Mastering CSS Grid') {
       window.open("https://medium.com/@premimm7/mastering-css-grid-a-modern-approach-to-web-layouts-9cca1b681121", "_blank");
