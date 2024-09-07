@@ -75,7 +75,7 @@ const StyledHeading = styled(motion.h1)`
 `;
 
 const StyledParagraph = styled(motion.p)`
-  color: #5A7184;
+  color: lightgray;
   font-family: "Work Sans";
   font-size: 18px;
   line-height: 1.5;
@@ -144,7 +144,7 @@ export default function AboutHomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
           >
-            I'm a Freelance UI/UX Designer and Full-Stack Developer based in Surat, India, with over 3+ years of experience. I've successfully completed more than 15+ projects, striving to build immersive and beautiful web applications through carefully crafted code and user-centric design. In addition to my freelance work, I also run a Telegram channel dedicated to helping students improve their coding skills.
+           As a passionate Freelance UI/UX Designer and Full-Stack Developer with over 3 years of experience, I specialize in creating immersive and beautiful web applications. With a portfolio of 15+ successful projects, I combine carefully crafted code with user-centric design to bring digital visions to life. My expertise spans from conceptualization to deployment, ensuring seamless and engaging user experiences. Beyond my client work, I'm committed to nurturing the next generation of developers through my educational Telegram channel, where I share insights and help students enhance their coding skills.
           </StyledParagraph>
           <Button onClick={handleContactPage}>Say Hello</Button>
         </LeftContainer>
