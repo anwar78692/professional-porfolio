@@ -42,7 +42,7 @@ const AnimatedBackground = () => {
     };
 
     const particles = [];
-    const particleCount = 100;
+    const particleCount = 50;
 
     for (let i = 0; i < particleCount; i++) {
       particles.push({
