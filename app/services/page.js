@@ -4,11 +4,13 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import StarsBackground from '../components/StarsBackground';
+import AnimatedBackground from '../components/AnimatedBackground';
 
 const SectionStyle = styled.div`
   background: linear-gradient(135deg, #0d0d2b, #191970);
   position: relative;
   overflow: hidden; /* Ensures stars don't cause scrollbars */
+  z-index:1;
 `;
 
 const ServicesSection = styled.section`
@@ -18,6 +20,7 @@ const ServicesSection = styled.section`
   padding: 24px 300px;
   min-height: 100vh;
   position: relative; /* Adjust for positioning stars */
+  z-index:2;
 
   @media (max-width: 1200px) {
     padding: 24px 150px;
@@ -174,7 +177,7 @@ const Services = () => {
   };
   return (
     <SectionStyle>
-      <StarsBackground />
+                   <AnimatedBackground/>
       <ServicesSection>
         <LeftContainer>
           <motion.h1

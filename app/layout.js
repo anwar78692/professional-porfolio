@@ -8,10 +8,7 @@ import Loader from './components/Loader';
 import { usePathname } from 'next/navigation';
 import StyledComponentsRegistry from '@/lib/register';
 import { LoadingProvider, useLoading } from './LoadingContext';
-import 'particles.js';
-import StarsBackground from './components/StarsBackground';
-import ParticlesBackground from './components/ParticlesBackground';
-import ThreeBackground from './components/ThreeBackground';
+import AnimatedBackground from './components/AnimatedBackground';
 
 function ContentLayout({ children }) {
   const pathname = usePathname();
@@ -24,19 +21,18 @@ function ContentLayout({ children }) {
       stopLoading();
     };
 
-    handleComplete(); // This should be called after the route change completes
+    handleComplete();
     return () => {
       // Cleanup if necessary
     };
-  }, [pathname]); // Use pathname to detect route changes
+  }, [pathname]);
 
   return (
     <>
       {loading && <Loader />}
       <Header />
       <main>
-      <StarsBackground/>
-      {/* <ThreeBackground/> */}
+      {/* <AnimatedBackground/> */}
         {children}</main>
       <Footer />
     </>

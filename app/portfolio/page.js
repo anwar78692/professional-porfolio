@@ -11,12 +11,14 @@ import desihisab from '../../public/desihisab.png';
 import powertrader from '../../public/powertrader.png';
 import humandesign from '../../public/humandesign.png';
 import StarsBackground from '../components/StarsBackground';
+import AnimatedBackground from '../components/AnimatedBackground';
 const ProjectCard = dynamic(() => import('../components/ProjectCard'), { ssr: false });
 
 const SectionStyle = styled.div`
   background: linear-gradient(135deg, #0d0d2b, #191970); /* Corrected background syntax */
   position: relative; /* Ensures stars are positioned relative to this section */
   // overflow: hidden;   /* Prevents overflow from star animations */
+  z-index:1;
 `;
 
 const Section = styled.section`
@@ -24,6 +26,7 @@ const Section = styled.section`
   flex-direction: column;
   align-items: center;
   padding: 24px 300px;
+  z-index:2;
   // background: linear-gradient(-0.35deg, #fff, #e6e8eb);
 
   @media (max-width: 1200px) {
@@ -115,7 +118,7 @@ export default function ProjectsPage() {
 
   return (
     <SectionStyle>
-        <StarsBackground />
+              <AnimatedBackground/>
     <Section>
       <PortfolioStyle
         initial={{ opacity: 0, y: -50 }}

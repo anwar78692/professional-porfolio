@@ -6,11 +6,13 @@ import Button from '../components/Button';
 import StarsBackground from '../components/StarsBackground';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import AnimatedBackground from '../components/AnimatedBackground';
 
 const SectionStyle = styled.div`
   background: linear-gradient(135deg, #0d0d2b, #191970);
   position: relative;
   overflow: hidden; /* Ensures stars don't cause scrollbars */
+  z-index:1;
 `;
 
 const ContactSection = styled.section`
@@ -19,6 +21,7 @@ const ContactSection = styled.section`
   align-items: center;
   padding: 4rem 2rem;
   min-height: 100vh;
+  z-index:2;
 
   @media (max-width: 768px) {
     padding: 3rem 1rem;
@@ -172,8 +175,9 @@ const ContactPage = () => {
 
   return (
     <SectionStyle>
+
        <ToastContainer />
-      <StarsBackground />
+       <AnimatedBackground/>
       <ContactSection>
         <ContactContainer>
           <ContactForm

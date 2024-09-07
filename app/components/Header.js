@@ -69,7 +69,7 @@ const Nav = styled.nav`
   @media (max-width: 768px) {
     position: fixed;
     top: 0;
-    left: ${({ isOpen }) => (isOpen ? '0' : '-100%')};
+    left: ${({ $isOpen }) => ($isOpen ? '0' : '-100%')};
     height: 100vh;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.95);
@@ -82,24 +82,14 @@ const Nav = styled.nav`
 `;
 
 const NavLink = styled.li`
-  color: ${({ isActive }) => (isActive ? '#FFD700' : 'white')}; /* Active link is gold for visibility */
+  color: ${({ $isActive }) => ($isActive ? '#FFD700' : 'white')};
   list-style: none;
 
   @media (max-width: 768px) {
-    color: ${({ isActive }) => (isActive ? '#FFD700' : 'white')};
+    color: ${({ $isActive }) => ($isActive ? '#FFD700' : 'white')};
     margin: 20px 0;
     font-size: 24px;
     cursor: pointer;
-  }
-`;
-
-const Hamburger = styled.div`
-  display: none;
-  cursor: pointer;
-  z-index: 1001; 
-
-  @media (max-width: 768px) {
-    display: block;
   }
 `;
 
@@ -110,7 +100,7 @@ const Bar = styled.div`
   margin: 5px;
   transition: all 0.3s ease-in-out;
 
-  ${({ isOpen }) => isOpen && `
+  ${({ $isOpen }) => $isOpen && `
     &:nth-child(1) {
       transform: rotate(45deg) translate(5px, 5px);
     }
@@ -122,6 +112,18 @@ const Bar = styled.div`
     }
   `}
 `;
+
+
+const Hamburger = styled.div`
+  display: none;
+  cursor: pointer;
+  z-index: 1001; 
+
+  @media (max-width: 768px) {
+    display: block;
+  }
+`;
+
 
 const shine = keyframes`
   0% {
@@ -162,14 +164,14 @@ export default function Header() {
         <NameText>Anwar Ahmad</NameText>
       </div>
       <Hamburger onClick={toggleMenu}>
-        <Bar isOpen={isOpen} />
-        <Bar isOpen={isOpen} />
-        <Bar isOpen={isOpen} />
+        <Bar $isOpen={isOpen} />
+        <Bar $isOpen={isOpen} />
+        <Bar $isOpen={isOpen} />
       </Hamburger>
-      <Nav isOpen={isOpen}>
+      <Nav $isOpen={isOpen}>
         {['/', '/about', '/portfolio', '/blog', '/services'].map((path, index) => (
           <Link href={path} key={index} passHref>
-            <NavLink isActive={pathname === path} onClick={closeMenu}>
+            <NavLink $isActive={pathname === path} onClick={closeMenu}>
               {path === '/' ? 'Home' : path.slice(1).charAt(0).toUpperCase() + path.slice(2)}
             </NavLink>
           </Link>

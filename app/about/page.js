@@ -2,18 +2,23 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import StarsBackground from "../components/StarsBackground";
+import AnimatedBackground from "../components/AnimatedBackground";
 
 const SectionStyle = styled.div`
   background: linear-gradient(135deg, #0d0d2b, #191970);
   position: relative;
   overflow: hidden; /* Ensures stars don't cause scrollbars */
+  z-index:1;
 `;
 const Section = styled.section`
+position: relative;
+  z-index: 2;
   display: flex;
   justify-content: center;
   padding: 24px 20px;
   width: 100%;
   height:100vh;
+  
   // background: linear-gradient(-0.35deg, #fff, #e6e8eb);
 
   @media (max-width: 768px) {
@@ -97,9 +102,8 @@ color: white;
 export default function AboutPage() {
   return (
     <SectionStyle>
-      <StarsBackground/>
     <Section>
-    
+      <AnimatedBackground/>
       <LeftContainer
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
