@@ -100,11 +100,10 @@ const SpanText = styled(motion.p)`
 `;
 
 export default function ProjectsPage() {
+  
   const handleMore = () => {
-    if(typeof window === 'undefined'){
       window.open("https://github.com/anwar78692", "_blank");
 
-    }
   };
 
   const projects = [

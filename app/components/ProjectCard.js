@@ -91,14 +91,11 @@ export default function ProjectCard({ project }) {
     const projectLinks = {
       "Stoxbox powertrader": "https://powertrader.stoxbox.in/dashboard",
       "Desi Hisab": "https://desihisab.com/",
-      "Human Design": "https://hd.demo.securemetasys.com/",
+      "Human Design": "https://michalhallelhonen.online/",
       "Innocap": "https://innocap.net/norofen/r001",
       "Tulkka": "https://tulkka.com/",
     };
-    if(typeof window === 'undefined' ) {
-      window.open(projectLinks[project.title] || "https://rake.com/", "_blank");
-
-    }
+    window.open(projectLinks[project.title] || "https://rake.com/", "_blank");
   };
 
   return (
