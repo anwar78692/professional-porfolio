@@ -79,8 +79,9 @@ const ProjectIdea = () => {
     <Section>
       <Title>Do you have a Project Idea? Let's discuss your project!</Title>
       <Subtitle>
-        There are many variations of passages of Lorem Ipsum available,
-        but the majority have suffered alteration.
+        From concept to completion, I'm here to help you create innovative and 
+        impactful web solutions. Whether it's a sleek website, a robust web app, 
+        or a custom software solution, let's collaborate and turn your vision into reality.
       </Subtitle>
       <Button
         whileHover={{ scale: 1.05 }}
